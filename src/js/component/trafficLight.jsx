@@ -25,15 +25,15 @@ const TrafficLight = () => {
     <div>
       <div className="traffic-light bg-black p-20px m-auto d-inline-block">
         <div
-          onClick={() => handleColorClick("red")}
+          onClick={() => handleClick("red")}
           className={`light red ${color === "red" ? " glow" : ""}`}
         ></div>
         <div
-          onClick={() => handleColorClick("yellow")}
+          onClick={() => handleClick("yellow")}
           className={`light yellow ${color === "yellow" ? " glow" : ""}`}
         ></div>
         <div
-          onClick={() => handleColorClick("green")}
+          onClick={() => handleClick("green")}
           className={`light green ${color === "green" ? " glow" : ""}`}
         ></div>
         {purpleOn && (
