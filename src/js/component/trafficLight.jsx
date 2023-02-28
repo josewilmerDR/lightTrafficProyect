@@ -1,163 +1,59 @@
-// import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 
-// const TrafficLight = () =>{
-//     const [ color, setColor] = useState("red");
-    
-//     return(
-//         <div className="traffic-light bg-black p-10px m-auto d-inline-block">
-//             <div 
-//                 onClick={() => setColor("red")} 
-//                 className={`light red ${color === "red" ? " glow" : ""}`}>
-//             </div>
-//             <div 
-//                 onClick={() => setColor("yellow")} 
-//                 className={`light yellow ${color === "yellow" ? " glow" : ""}`}>
-//             </div>
-//             <div 
-//                 onClick={() => setColor("green")} 
-//                 className={`light green ${color === "green" ? " glow" : ""}`}>
-//             </div>
-//         </div>
-//     )
-// }
+const TrafficLight = () => {
+  const [color, setColor] = useState("red");
+  const [purpleOn, setPurpleOn] = useState(false);
 
-// export default TrafficLight;
+  const handleColorClick = (newColor) => {
+    setColor(newColor);
+  };
 
+  const handlePurpleClick = () => {
+    setPurpleOn(!purpleOn);
+  };
 
-
-// import React, {useState, useEffect} from "react";
-
-// const TrafficLight = ({color}) =>{
-    
-//     return(
-//         <div className="traffic-light bg-black p-10px m-auto d-inline-block">
-//             <div 
-//                 className={`light red ${color === "red" ? " glow" : ""}`}>
-//             </div>
-//             <div 
-//                 className={`light yellow ${color === "yellow" ? " glow" : ""}`}>
-//             </div>
-//             <div 
-//                 className={`light green ${color === "green" ? " glow" : ""}`}>
-//             </div>
-//         </div>
-//     )
-// }
-
-// const TrafficLightController = () => {
-//     const [ color, setColor] = useState("red");
-    
-//     useEffect(() => {
-//         const intervalId = setInterval(() => {
-//             if(color === "red") {
-//                 setColor("yellow");
-//             } else if (color === "yellow") {
-//                 setColor("green");
-//             } else {
-//                 setColor("red");
-//             }
-//         }, 2000);
-//         return () => clearInterval(intervalId);
-//     }, [color]);
-    
-//     return (
-//         <div>
-//             <TrafficLight color={color} />
-//         </div>
-//     );
-// };
-
-// export default TrafficLightController;
-
-
-
-
-import React, {useState, useEffect} from "react";
-
-// const TrafficLight = () =>{
-//     const [ color, setColor] = useState("red");
-    
-//     return(
-//         <div className="traffic-light bg-black p-10px m-auto d-inline-block">
-//             <div 
-//                 onClick={() => setColor("red")} 
-//                 className={`light red ${color === "red" ? " glow" : ""}`}>
-//             </div>
-//             <div 
-//                 onClick={() => setColor("yellow")} 
-//                 className={`light yellow ${color === "yellow" ? " glow" : ""}`}>
-//             </div>
-//             <div 
-//                 onClick={() => setColor("green")} 
-//                 className={`light green ${color === "green" ? " glow" : ""}`}>
-//             </div>
-//         </div>
-//     )
-// }
-
-const TrafficLightController = () => {
-    const [ color, setColor] = useState("red");
-    
-    // useEffect(() => {
-    //     const intervalId = setInterval(() => {
-    //         if(color === "red") {
-    //             setColor("yellow");
-    //         } else if (color === "yellow") {
-    //             setColor("green");
-    //         } else {
-    //             setColor("red");
-    //         }
-    //     }, 2000);
-    //     return () => clearInterval(intervalId);
-    // }, [color]);
-    
-    const handleClick = () => {
+  const handleClick = () => {
         if(color === "red") {
             setColor("yellow");
         } else if (color === "yellow") {
             setColor("green");
-        } else {
+        } else if (color === "green") {
+            setColor("purple");
+        }else {
             setColor("red");
         }
+        
     };
-    
-    return (
-        <>
-        {/* // <div className="traffic-light bg-black p-10px m-auto d-inline-block">
-        //     <div 
-        //         onClick={() => setColor("red")} 
-        //         className={`light red ${color === "red" ? " glow" : ""}`}>
-        //     </div>
-        //     <div 
-        //         onClick={() => setColor("yellow")} 
-        //         className={`light yellow ${color === "yellow" ? " glow" : ""}`}>
-        //     </div>
-        //     <div 
-        //         onClick={() => setColor("green")} 
-        //         className={`light green ${color === "green" ? " glow" : ""}`}>
-        //     </div>
-        // </div> */}
 
-        <div>
-            <div className="traffic-light bg-black p-10px m-auto d-inline-block">
-                <div 
-                    onClick={() => setColor("red")} 
-                    className={`light red ${color === "red" ? " glow" : ""}`}>
-                </div>
-                <div 
-                    onClick={() => setColor("yellow")} 
-                    className={`light yellow ${color === "yellow" ? " glow" : ""}`}>
-                </div>
-                <div 
-                    onClick={() => setColor("green")} 
-                    className={`light green ${color === "green" ? " glow" : ""}`}>
-                </div>
-             </div>
-            {/* <TrafficLight color={color} /> */}
-            <button onClick={handleClick}>Change color</button>
-        </div>
-        </>
-    );
+  return (
+    <div>
+      <div className="traffic-light bg-black p-20px m-auto d-inline-block">
+        <div
+          onClick={() => handleColorClick("red")}
+          className={`light red ${color === "red" ? " glow" : ""}`}
+        ></div>
+        <div
+          onClick={() => handleColorClick("yellow")}
+          className={`light yellow ${color === "yellow" ? " glow" : ""}`}
+        ></div>
+        <div
+          onClick={() => handleColorClick("green")}
+          className={`light green ${color === "green" ? " glow" : ""}`}
+        ></div>
+        {purpleOn && (
+          <div
+            className={`light purple ${color === "purple" ? " glow" : ""}`}
+          ></div>
+        )}
+      </div>
+      <button className="btn btn-primary" onClick={handleClick}>
+        Change Color
+      </button>
+      <button className="btn btn-primary" onClick={handlePurpleClick}>
+        {purpleOn ? "Hide purple light" : "Add purple light"}
+      </button>
+    </div>
+  );
 };
 
-export default TrafficLightController;
+export default TrafficLight;
