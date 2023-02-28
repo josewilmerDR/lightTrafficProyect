@@ -4,14 +4,6 @@ const TrafficLight = () => {
   const [color, setColor] = useState("red");
   const [purpleOn, setPurpleOn] = useState(false);
 
-  const handleColorClick = (newColor) => {
-    setColor(newColor);
-  };
-
-  const handlePurpleClick = () => {
-    setPurpleOn(!purpleOn);
-  };
-
   const handleClick = () => {
         if(color === "red") {
             setColor("yellow");
@@ -24,6 +16,10 @@ const TrafficLight = () => {
         }
         
     };
+
+    const handlePurpleClick = () => {
+        setPurpleOn(!purpleOn);
+      };
 
   return (
     <div>
